@@ -8,7 +8,6 @@ public:
     static bool validateName(string name)
     {
         int length = name.length();
-        string x;
         for (int i = 0; i < length; i++)
         {
             if (length < 5 || length > 20)
@@ -24,8 +23,8 @@ public:
                 return false;
                 break;
             };
-            return true;
         }
+        return true;
     };
     static bool validatePassword(string password)
     {

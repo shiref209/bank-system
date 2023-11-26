@@ -12,6 +12,10 @@ public:
     {
         return salary;
     }
+    void setSalary(double salary)
+    {
+        this->salary = salary;
+    }
     void display()
     {
         cout << "Name:" << this->getName() << endl;

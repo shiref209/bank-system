@@ -1,3 +1,4 @@
+#pragma once
 using namespace std;
 #include <iostream>
 #include "./Person.h"
@@ -7,14 +8,27 @@ class Client : public Person
     double balance = 1500;
 
 public:
+    // Constructor
+    Client()
+    {
+        // this->id=
+    }
+    Client(int id, string name, string password, double salary)
+    {
+        this->setName(name);
+        this->setPassword(password);
+        this->setId(id);
+        this->setBalance(balance);
+    };
     double getBalance()
     {
         return balance;
     }
-    // Constructors
-    Client()
+
+    // Setters & Getters
+    void setBalance(double balance)
     {
-        // this->id=
+        this->balance = balance;
     }
     // Methods
     void deposit(double amount)
@@ -52,7 +66,7 @@ public:
     }
     void checkBalance()
     {
-        cout << "Your balance is: " << this->balance << endl;
+        cout << "Your balance is: " << this->getBalance() << endl;
     }
     void display()
     {

@@ -26,6 +26,10 @@ public:
             this->password = password;
         };
     }
+    void setId(int id)
+    {
+        this->id = id;
+    }
     // Getters
     int getId()
     {
