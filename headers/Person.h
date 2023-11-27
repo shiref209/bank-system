@@ -10,7 +10,8 @@ class Person
 
 public:
     // Setters
-    void setName(string name)
+    void
+    setName(string name)
     {
         bool isValid = Validation::validateName(name);
         if (isValid)

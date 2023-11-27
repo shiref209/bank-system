@@ -3,7 +3,7 @@ using namespace std;
 #include <iostream>
 #include "./Person.h"
 
-class Client : public Person
+class Client : virtual public Person
 {
     double balance = 1500;
 
