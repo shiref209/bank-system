@@ -9,6 +9,7 @@
 
 class DataSource
 {
+
 public:
     // helpers
     // **********************************
@@ -59,16 +60,17 @@ public:
     }
     // Get All helper
     template <typename T>
-    vector<T> getAll(T &object, string fileName)
+    vector<T> getAll(T &object, string fileName, vector<T> allObjects)
     {
         ifstream file(fileName);
         string line;
-        vector<T> allObjects;
+        // vector<T> allObjects;
         T person;
         // dynamic cast to chect class of object
         Client *client = dynamic_cast<Client *>(&object);
         Employee *employee = dynamic_cast<Employee *>(&object);
         Admin *admin = dynamic_cast<Admin *>(&object);
+
         // vars to extract data
         int seperatorIndex;
         string prop;
@@ -96,6 +98,7 @@ public:
             {
                 // balance only limited to client
                 client->setBalance(stod(value));
+                // allClients.push_back(*client);
             }
             else if (prop == "salary")
             {
@@ -103,23 +106,38 @@ public:
                 if (employee)
                 {
                     employee->setSalary(stod(value));
+                    // allEmployees.push_back(*employee);
                 }
                 else
                 {
                     // it's admin
                     admin->setSalary(stod(value));
+                    // allAdmins.push_back(*admin);
                 };
             }
-            // else if (prop == "")
-            // {
-            //     cout << "empty line" << endl;
-            // }
+            else if (prop == "")
+            {
+                // cout << "empty line" << endl;
+            }
             else
             {
                 // cout << "Empty line" << endl;
             };
             if (line.length() == 0)
             {
+                // if (client)
+                // {
+                //     allClients.push_back(*client);
+                // }
+                // else if (employee)
+                // {
+                //     allEmployees.push_back(*employee);
+                // }
+                // else
+                // {
+                //     allAdmins.push_back(*admin);
+                // }
+
                 allObjects.push_back(object);
             }
         }
@@ -213,6 +231,7 @@ public:
         Employee *employee = dynamic_cast<Employee *>(&object[0]);
         for (int i = 0; i < object.size(); i++)
         {
+            // Condition to truncate file only on the first file open
             if (i == 0)
             {
                 isEditing = true;

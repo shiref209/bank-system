@@ -1,9 +1,14 @@
 #pragma once
 #include "./DataSource.h"
 
-class FileManager : virtual public DataSource
+class FileManager : public DataSource
 {
+    // protected:
 public:
+    static vector<Client> allClients;
+    static vector<Employee> allEmployees;
+    static vector<Admin> allAdmins;
+
     void addClient(Client c)
     {
         addData("Clients.txt", c);
@@ -38,7 +43,7 @@ public:
     vector<Client> getAllClients()
     {
         Client c;
-        return getAll(c, "Clients.txt");
+        return getAll(c, "Clients.txt", allClients);
         // ifstream file("Clients.txt");
         // string line;
         // vector<Client> Clients;
@@ -90,12 +95,12 @@ public:
     vector<Employee> getAllEmployees()
     {
         Employee e;
-        return getAll(e, "Employees.txt");
+        return getAll(e, "Employees.txt", allEmployees);
     }
     vector<Admin> getAllAdmins()
     {
         Admin a;
-        return getAll(a, "Admins.txt");
+        return getAll(a, "Admins.txt", allAdmins);
     }
     void removeAllClients()
     {
@@ -110,3 +115,6 @@ public:
         removeAll("Employees.txt");
     }
 };
+std::vector<Client> FileManager::allClients;
+std::vector<Employee> FileManager::allEmployees;
+std::vector<Admin> FileManager::allAdmins;

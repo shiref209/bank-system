@@ -102,9 +102,10 @@ void Employee::listClients()
 }
 void Employee::editClient(int id, string name, string password, double balance)
 {
-    vector<Client> allClients = fileManager.getAllClients();
+    FileManager::allClients = fileManager.getAllClients();
     bool isFirstLine = false;
-    fileManager.editPerson(allClients, isFirstLine, "Clients.txt", id, name, password, balance);
+    fileManager.editPerson(FileManager::allClients, isFirstLine, "Clients.txt", id, name, password, balance);
+    cout << "edited    " << name << endl;
 }
 void Admin::listEmployees()
 {
