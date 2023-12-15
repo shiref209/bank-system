@@ -39,4 +39,28 @@ public:
             return true;
         }
     }
+    static bool validateSalary(double amount)
+    {
+        if (amount < 5000)
+        {
+            cout << "Salary must be greater than 5000" << endl;
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+    static bool validateBalance(double amount)
+    {
+        if (amount < 1500)
+        {
+            cout << "Balance must be greater than 1500" << endl;
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
 };

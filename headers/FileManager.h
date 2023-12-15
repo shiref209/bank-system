@@ -115,6 +115,6 @@ public:
         removeAll("Employees.txt");
     }
 };
-std::vector<Client> FileManager::allClients;
-std::vector<Employee> FileManager::allEmployees;
-std::vector<Admin> FileManager::allAdmins;
+vector<Client> FileManager::allClients;
+vector<Employee> FileManager::allEmployees;
+vector<Admin> FileManager::allAdmins;

@@ -6,14 +6,22 @@ using namespace std;
 class Admin : public Employee
 // , virtual public Person
 {
-    double salary = 5000;
+    double salary;
+    static int counter;
 
 public:
     Admin()
     {
+        this->salary = 5000;
+        counter++;
+        this->setId(counter);
     }
     // Inherit same constructor of Parent employee to intialize obj of Admin(DRY)
-    Admin(int id, string name, string password, double salary) : Employee(id, name, password, salary) {}
+    Admin(string name, string password, double salary) : Employee(name, password, salary)
+    {
+        this->counter++;
+        this->setId(this->counter);
+    }
 
     double getSalary()
     {
@@ -24,3 +32,4 @@ public:
     void listEmployees();                                                    // body at InterfaceManager.h
     void editEmployee(int id, string name, string password, double balance); // body at InterfaceManager.h
 };
+int Admin::counter = 0;

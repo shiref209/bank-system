@@ -5,19 +5,24 @@ using namespace std;
 
 class Client : public Person
 {
-    double balance = 1500;
+    double balance;
 
 public:
+    static int counter;
+
     // Constructor
     Client()
     {
-        // this->id=
+        this->balance = 1500;
+        counter++;
+        this->setId(counter);
     }
-    Client(int id, string name, string password, double salary)
+    Client(string name, string password, double balance)
     {
+        counter++;
+        this->setId(counter);
         this->setName(name);
         this->setPassword(password);
-        this->setId(id);
         this->setBalance(balance);
     };
     double getBalance()
@@ -28,15 +33,36 @@ public:
     // Setters & Getters
     void setBalance(double balance)
     {
-        this->balance = balance;
+        bool isValid = Validation::validateBalance(balance);
+        if (isValid)
+        {
+            this->balance = balance;
+        }
+        else
+        {
+            // handle error phase 3
+
+            cout << "invalid balance" << endl;
+        }
     }
     // Methods
     void deposit(double amount)
     {
+        if (amount < 0)
+        {
+            cout << "Invalid amount" << endl;
+            return;
+        }
+
         balance += amount;
     }
     void withdraw(double amount)
     {
+        if (amount < 0)
+        {
+            cout << "Invalid amount" << endl;
+            return;
+        }
         if (amount <= this->balance)
         {
             balance -= amount;
@@ -48,20 +74,28 @@ public:
     }
     void transferTo(double amount, Client &reciepient)
     {
-        if (this->balance - amount >= 1500)
+        if (amount < 0)
         {
-            reciepient.deposit(amount);
-            this->withdraw(amount);
-        }
-        else if (this->balance - amount < 1500)
-        {
-            cout << "Your balance is under the minimum limit, please consider depositing minimum of" << 1500 - (this->balance - amount) << endl;
-            reciepient.deposit(amount);
-            this->withdraw(amount);
+            cout << "Invalid amount" << endl;
+            return;
         }
         else
         {
-            cout << "Insufficient Balance" << endl;
+            if ((this->balance - amount) >= 1500)
+            {
+                reciepient.deposit(amount);
+                this->withdraw(amount);
+            }
+            else if ((this->balance - amount) < 1500 && (this->balance - amount) > 0)
+            {
+                cout << "Your balance is under the minimum limit, please consider depositing minimum of" << 1500 - (this->balance - amount) << endl;
+                reciepient.deposit(amount);
+                this->withdraw(amount);
+            }
+            else
+            {
+                cout << "Insufficient Balance" << endl;
+            }
         }
     }
     void checkBalance()
@@ -74,3 +108,4 @@ public:
         cout << "Balance: " << this->getBalance() << endl;
     }
 };
+int Client::counter = 0;

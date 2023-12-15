@@ -17,7 +17,11 @@ public:
         if (isValid)
         {
             this->name = name;
-        };
+        }
+        else
+        {
+            // handle error phase 3
+        }
     }
     void setPassword(string password)
     {

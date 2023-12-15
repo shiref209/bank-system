@@ -208,11 +208,13 @@ public:
                     if (employee)
                     {
                         employee->setSalary(stod(value));
+                        break;
                     }
                     else
                     {
                         // it's admin
                         admin->setSalary(stod(value));
+                        break;
                     };
                 }
                 else if (prop == "")
@@ -221,6 +223,11 @@ public:
                     break;
                 }
             }
+        }
+        // invalid id
+        if (!isFound)
+        {
+            cout << "invalid id" << endl;
         }
     }
     template <typename T>

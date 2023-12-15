@@ -90,14 +90,15 @@ Employee *Admin::searchEmployee(int id)
 };
 void Employee::listClients()
 {
-    vector<Client> allClients = fileManager.getAllClients();
+    FileManager::allClients = fileManager.getAllClients();
+    int size = FileManager::allClients.size();
     cout << "List of all clients:" << endl;
-    for (int i = 0; i < allClients.size(); i++)
+    for (int i = 0; i < size; i++)
     {
-        cout << allClients[i].getId() << endl;
-        cout << allClients[i].getName() << endl;
-        cout << allClients[i].getPassword() << endl;
-        cout << allClients[i].getBalance() << endl;
+        cout << FileManager::allClients[i].getId() << endl;
+        cout << FileManager::allClients[i].getName() << endl;
+        // cout << FileManager::allClients[i].getPassword() << endl;
+        cout << FileManager::allClients[i].getBalance() << endl;
     }
 }
 void Employee::editClient(int id, string name, string password, double balance)
@@ -109,15 +110,15 @@ void Employee::editClient(int id, string name, string password, double balance)
 }
 void Admin::listEmployees()
 {
-    vector<Employee> allEmployees = fileManager.getAllEmployees();
+    FileManager::allEmployees = fileManager.getAllEmployees();
     cout << "List of all Employees:" << endl;
 
-    for (int i = 0; i < allEmployees.size(); i++)
+    for (int i = 0; i < FileManager::allEmployees.size(); i++)
     {
-        cout << allEmployees[i].getId() << endl;
-        cout << allEmployees[i].getName() << endl;
-        cout << allEmployees[i].getPassword() << endl;
-        cout << allEmployees[i].getSalary() << endl;
+        cout << FileManager::allEmployees[i].getId() << endl;
+        cout << FileManager::allEmployees[i].getName() << endl;
+        // cout << FileManager::allEmployees[i].getPassword() << endl;
+        cout << FileManager::allEmployees[i].getSalary() << endl;
     }
 }
 void Admin::editEmployee(int id, string name, string password, double balance)
